@@ -8,7 +8,7 @@ import android.content.Context;
  * e-mail : who_know_me@163.com
  * time   : 2018/11/20 1:35 PM
  * version: 1.0
- * description:
+ * description:OkRetrofit的上下文.
  */
 public class OkRetrofitContext {
   @SuppressLint("StaticFieldLeak")

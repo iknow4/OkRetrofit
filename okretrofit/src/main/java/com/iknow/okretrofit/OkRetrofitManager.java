@@ -1,8 +1,7 @@
 package com.iknow.okretrofit;
 
-import calibur.core.http.interceptors.HeaderInterceptor;
-import calibur.core.http.util.NetworkHost;
-import calibur.foundation.utils.JSONUtil;
+import com.iknow.okretrofit.interceptors.HeaderInterceptor;
+import com.iknow.okretrofit.utils.JSONUtil;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
@@ -21,7 +20,7 @@ import java.util.Hashtable;
  * description:可构建多个service并支持缓存
  */
 @SuppressWarnings({ "unchecked", "WeakerAccess", "unused" })
-public class RetrofitManager {
+public class OkRetrofitManager {
 
   private static OkHttpClient mOkHttpClient;
   private Converter.Factory mGlobalConverterFactory;
@@ -29,13 +28,13 @@ public class RetrofitManager {
   private Hashtable<Integer, Object> mCache = new Hashtable<>();
 
   private static final class SingletonHolder {
-    private static RetrofitManager INSTANCE = new RetrofitManager();
+    private static OkRetrofitManager INSTANCE = new OkRetrofitManager();
   }
 
-  private RetrofitManager() {
+  private OkRetrofitManager() {
   }
 
-  public static RetrofitManager getInstance() {
+  public static OkRetrofitManager getInstance() {
     return SingletonHolder.INSTANCE;
   }
 
@@ -93,7 +92,7 @@ public class RetrofitManager {
     if(mOkHttpClient == null) init();
     Retrofit retrofit = builder.client(mOkHttpClient)
         .baseUrl(url)
-        .addConverterFactory(mGlobalConverterFactory == null ? GsonConverterFactory.create(JSONUtil.getDefaultGson())
+        .addConverterFactory(mGlobalConverterFactory == null ? GsonConverterFactory.create(JSONUtil.INSTANCE.getDefaultGson())
             : mGlobalConverterFactory)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build();

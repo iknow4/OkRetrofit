@@ -1,7 +1,5 @@
 package com.iknow.okretrofit.interceptors;
 
-import calibur.core.manager.UserSystem;
-import calibur.core.utils.ISharedPreferencesKeys;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
