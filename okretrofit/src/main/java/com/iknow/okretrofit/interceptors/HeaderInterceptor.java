@@ -11,12 +11,13 @@ import java.io.IOException;
  * e-mail : who_know_me@163.com
  * time   : 2018/11/20 10:42 AM
  * version: 1.0
- * description:
+ * description:Add headers
  */
 public class HeaderInterceptor implements Interceptor {
 
   @Override public Response intercept(Chain chain) throws IOException{
     Request.Builder requestBuilder = chain.request().newBuilder();
+    //Add other headers param here.
     Request request = requestBuilder.build();
     return chain.proceed(request);
   }

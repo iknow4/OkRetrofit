@@ -1,7 +1,6 @@
 package com.iknow.okretrofit.interceptors;
 
 import android.text.TextUtils;
-import com.iknow.okretrofit.utils.JSONUtil;
 import okhttp3.*;
 
 import java.io.IOException;

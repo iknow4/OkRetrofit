@@ -48,6 +48,8 @@ public class OkRetrofitManager {
     httpBuilder.interceptors().add(new HeaderInterceptor());
     mOkHttpClient = httpBuilder.build();
     mGlobalConverterFactory = factory;
+    if(mGlobalConverterFactory == null)
+      mGlobalConverterFactory = GsonConverterFactory.create(JSONUtil.INSTANCE.getDefaultGson());
   }
 
 
@@ -92,8 +94,7 @@ public class OkRetrofitManager {
     if(mOkHttpClient == null) init();
     Retrofit retrofit = builder.client(mOkHttpClient)
         .baseUrl(url)
-        .addConverterFactory(mGlobalConverterFactory == null ? GsonConverterFactory.create(JSONUtil.INSTANCE.getDefaultGson())
-            : mGlobalConverterFactory)
+        .addConverterFactory(mGlobalConverterFactory)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build();
 
